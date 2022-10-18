@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 
 
-function News() {
+function EconomyNews() {
     const [newsData, setNewsData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -30,7 +30,7 @@ function News() {
 
                         <Col className="my-2">
                             <span>
-                                <div>BODY: {n.body}</div>
+                                <div>TITLE: {n.title}</div>
                             </span>
                         </Col>
                     </Row>)
@@ -40,4 +40,4 @@ function News() {
     )
 }
 
-export default News;
+export default EconomyNews;

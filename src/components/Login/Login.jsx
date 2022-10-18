@@ -13,14 +13,14 @@ const Login = () => {
         handleSubmit,
         reset,
     } = useForm({
-        mode: 'onBlur'
+        mode: "onChange"
     });
 
     const onSubmit = (data) => {
         if (data.username === localStorage.getItem('username') && data.password === localStorage.getItem('password')) {
             dispatch({ type: 'setIsAuth' });
         } else {
-            alert('no')
+        <h1> {<p>'ERROR'</p>}</h1>
         }
         reset()
     }
@@ -64,4 +64,3 @@ const Login = () => {
 }
 
 export default Login;
-

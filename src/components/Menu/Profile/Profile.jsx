@@ -1,10 +1,12 @@
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar, Col, Row } from "antd";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { Navigate, useParams } from "react-router-dom";
 import AuthContext from "../../context/context";
 
-const Profile = (props) => {
+const Profile = () => {
     const { id } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -34,8 +36,26 @@ const Profile = (props) => {
                     <div>
                         {user && (
                             <>
-                                <h1>{user.name}</h1>
+                                <Row>
+                                    <Col span={4} >
+                                        <Avatar
+                                            size={{ xl: 150 }}
+                                            style={{
+                                                backgroundColor: '#87d068',
+                                            }}
+                                            icon={<UserOutlined />} />
+                                    </Col>
+                                    <Col span={20}>
+                                        <h1>
+                                            <div>{user.name}</div>
+                                            <div>{user.email}</div>
+                                            <div>{user.address.city}</div>
+
+                                        </h1>
+                                    </Col>
+                                </Row>
                             </>
+
                         )}
                     </div>
                 )}

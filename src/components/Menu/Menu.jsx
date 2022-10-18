@@ -9,7 +9,7 @@ import Login from "../Login/Login";
 
 
 
-const Menu = () => {
+const Menuu = () => {
     return (
         <Container>
             <Row>
@@ -43,4 +43,4 @@ const Menu = () => {
     )
 }
 
-export default Menu;
+export default Menuu;

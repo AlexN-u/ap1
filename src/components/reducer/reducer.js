@@ -1,6 +1,5 @@
 import { useReducer } from "react";
 
-
 const reducer = (state, action) => {
     switch (action.type) {
         case 'setIsAuth':
@@ -13,13 +12,14 @@ const reducer = (state, action) => {
                 ...state,
                 isAuth: false,
             }
+              
         default: return state;
     }
 }
 
 const useGlobalState = () => {
     const [state, dispatch] = useReducer(reducer, {
-        isAuth: false
+        isAuth: false,
     })
     return { state, dispatch }
 };

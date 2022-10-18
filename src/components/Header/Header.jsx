@@ -3,7 +3,7 @@ import { Col, Container, Row, Image, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../context/context";
 
-const Header = () => {
+const Headerr = () => {
     const { state, dispatch } = useContext(AuthContext);
     return (
         <Container fluid className="my-1">
@@ -28,4 +28,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default Headerr;
