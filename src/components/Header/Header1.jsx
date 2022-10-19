@@ -15,7 +15,7 @@ export default function Header1() {
       <Row>
         <Col span={20} >
           <Link to='/'> 
-          <Image src='https://static7.depositphotos.com/1297553/795/i/600/depositphotos_7951909-stock-photo-team-of-lifting-it-information.jpg' roundedCircle height='55px' className="my-1" />
+          {/* <Image src='https://static7.depositphotos.com/1297553/795/i/600/depositphotos_7951909-stock-photo-team-of-lifting-it-information.jpg' roundedCircle height='55px' className="my-1" /> */}
           </Link>
         </Col>
         <>
