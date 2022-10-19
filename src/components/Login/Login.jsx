@@ -1,66 +1,82 @@
-import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { Navigate } from "react-router";
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import AuthContext from "../context/context";
 
-const Login = () => {
 
-    const { state, dispatch } = useContext(AuthContext);
 
-    const {
-        register,
-        formState: { errors, isValid },
-        handleSubmit,
-        reset,
-    } = useForm({
-        mode: "onChange"
-    });
+export default function Login() {
+  const [form, reset] = Form.useForm();
+  const [, forceUpdate] = useState({});
+  const { state, dispatch } = useContext(AuthContext);
 
-    const onSubmit = (data) => {
-        if (data.username === localStorage.getItem('username') && data.password === localStorage.getItem('password')) {
-            dispatch({ type: 'setIsAuth' });
-        } else {
-        <h1> {<p>'ERROR'</p>}</h1>
-        }
-        reset()
+  // To disable submit button at the beginning.
+  useEffect(() => {
+    forceUpdate({});
+  }, []);
+  const onFinish = (values) => {
+    if (values.username === localStorage.getItem('username') && values.password === localStorage.getItem('password')) {
+      dispatch({ type: 'setIsAuth' });
+    } else {
+      <h1> {<p>'ERROR'</p>}</h1>
     }
-
-    return (
-
-        <div>
-            {!state.isAuth ?
-                <><h1> LOGIN </h1><form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <input
-                            {...register('username',
-                                {
-                                    required: 'Обязательное поле',
-                                    minLength: {
-                                        value: 5,
-                                        message: 'Минимальное количество символов 5'
-                                    }
-                                })}
-                            placeholder='username' />
-                    </div>
-                    <div> {errors?.username && <p>{errors?.username?.message || 'ERROR'}</p>} </div>
-                    <div>
-                        <input
-                            {...register('password',
-                                {
-                                    required: 'Обязательно поле',
-                                })}
-                            placeholder='password'
-                            type='password' />
-                    </div>
-                    <div> {errors?.password && <p>{errors?.password?.message || 'ERROR'}</p>} </div>
-                    <div>
-                        <input type='submit' disabled={!isValid} />
-                    </div>
-                </form></>
-                :
-                <Navigate to={'/profile/1'} />}
-        </div>
-    )
-}
-
-export default Login;
+    reset()
+  }
+  return (
+    <div>
+      {!state.isAuth ?
+        <>
+        <h1 style={{ textAlign: 'center' }}> Please login </h1>
+          <center>
+            <Form form={form} name="horizontal_login" layout="vertical" onFinish={onFinish} autoComplete="off">
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your username!',
+                  },
+                ]}
+              >
+                <Input style={{ width: 200 }} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your password!',
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="password"
+                  placeholder="Password"
+                  style={{ width: 200 }}
+                />
+              </Form.Item>
+              <Form.Item shouldUpdate>
+                {() => (
+                  <Button
+                    style={{ width: 200 }}
+                    type="primary"
+                    htmlType="submit"
+                    disabled={
+                      !form.isFieldsTouched(true) ||
+                      !!form.getFieldsError().filter(({ errors }) => errors.length).length
+                    }
+                  >
+                    Log in
+                  </Button>
+                )}
+              </Form.Item>
+            </Form>
+          </center>
+        </>
+        :
+        <Navigate to={'/profile/1'} />}
+    </div>
+  );
+};
