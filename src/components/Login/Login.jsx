@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import AuthContext from "../context/context";
@@ -7,7 +7,7 @@ import AuthContext from "../context/context";
 
 
 export default function Login() {
-  const [form, reset] = Form.useForm();
+  const [form] = Form.useForm();
   const [, forceUpdate] = useState({});
   const { state, dispatch } = useContext(AuthContext);
 
@@ -18,10 +18,11 @@ export default function Login() {
     if (values.username === localStorage.getItem('username') && values.password === localStorage.getItem('password')) {
       dispatch({ type: 'setIsAuth' });
     } else {
-      <h1> {<p>'ERROR'</p>}</h1>
+        message.error('Username or password entered incorrectly');
+        form.resetFields()
     }
-    reset()
   }
+
   return (
     <div>
       {!state.isAuth ?
@@ -36,6 +37,8 @@ export default function Login() {
                     required: true,
                     message: 'Please input your username!',
                   },
+                  {min: 5,
+                  message:'Min lenghts username 5 symbols'}
                 ]}
               >
                 <Input style={{ width: 200 }} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />

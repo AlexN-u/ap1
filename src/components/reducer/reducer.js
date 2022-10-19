@@ -12,7 +12,11 @@ const reducer = (state, action) => {
                 ...state,
                 isAuth: false,
             }
-              
+        case 'error':
+            return {
+                ...state,
+                er: 'errrorrr'
+            }      
         default: return state;
     }
 }
@@ -20,6 +24,7 @@ const reducer = (state, action) => {
 const useGlobalState = () => {
     const [state, dispatch] = useReducer(reducer, {
         isAuth: false,
+        er:'errrorrr',
     })
     return { state, dispatch }
 };
