@@ -11,7 +11,6 @@ export default function Login() {
   const [, forceUpdate] = useState({});
   const { state, dispatch } = useContext(AuthContext);
 
-  // To disable submit button at the beginning.
   useEffect(() => {
     forceUpdate({});
   }, []);
@@ -27,9 +26,9 @@ export default function Login() {
     <div>
       {!state.isAuth ?
         <>
-        <h1 style={{ textAlign: 'center' }}> Please login </h1>
-          <center>
-            <Form form={form} name="horizontal_login" layout="vertical" onFinish={onFinish} autoComplete="off">
+          <h1 style={{ textAlign: 'center' }}> Please login </h1>
+          <Form form={form} name="horizontal_login" layout="horizontal" onFinish={onFinish} autoComplete="off">
+            <div className='d-flex justify-content-center'>
               <Form.Item
                 name="username"
                 rules={[
@@ -40,7 +39,8 @@ export default function Login() {
                 ]}
               >
                 <Input style={{ width: 200 }} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-              </Form.Item>
+              </Form.Item></div>
+            <div className='d-flex justify-content-center'>
               <Form.Item
                 name="password"
                 rules={[
@@ -56,9 +56,10 @@ export default function Login() {
                   placeholder="Password"
                   style={{ width: 200 }}
                 />
-              </Form.Item>
-              <Form.Item shouldUpdate>
-                {() => (
+              </Form.Item></div>
+            <Form.Item shouldUpdate className='d-flex justify-content-center'>
+              {() => (
+                <div className='d-flex justify-content-center'>
                   <Button
                     style={{ width: 200 }}
                     type="primary"
@@ -69,11 +70,10 @@ export default function Login() {
                     }
                   >
                     Log in
-                  </Button>
-                )}
-              </Form.Item>
-            </Form>
-          </center>
+                  </Button></div>
+              )}
+            </Form.Item>
+          </Form>
         </>
         :
         <Navigate to={'/profile/1'} />}
