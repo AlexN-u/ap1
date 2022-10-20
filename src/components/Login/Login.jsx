@@ -19,7 +19,7 @@ export default function Login() {
       dispatch({ type: 'setIsAuth' });
     } else {
         message.error('Username or password entered incorrectly');
-        form.resetFields()
+        form.resetFields();
     }
   }
 

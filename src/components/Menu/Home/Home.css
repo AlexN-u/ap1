@@ -1,0 +1,8 @@
+.banner {
+    background-image: url('/src/assets/img/grey.jpeg');
+    margin-top: 0;
+    padding: 260px 0 100px 0;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

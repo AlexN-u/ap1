@@ -1,11 +1,12 @@
+import { Col, Row } from "antd";
 import React from "react";
 
-function Home() {
+export default function Home() {
+
+
     return (
-        <>
-        
-        </>
+        <section className="banner">
+           
+        </section>
     )
 }
-
-export default Home;
