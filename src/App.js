@@ -4,7 +4,6 @@ import {  Layout } from 'antd';
 import Header1 from './components/Header/Header1';
 import Menuu from './components/Menu/Menu';
 import Footer1 from './components/Footer/Footer';
-import './App.css';
 
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
   localStorage.setItem('username', 'admin');
   localStorage.setItem('password', '12345');
   return (
-    <Layout className='sec'>
+    <Layout>
       <Header1 />
       <Menuu />
       <Footer1 />

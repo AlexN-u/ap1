@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { Image } from 'react-bootstrap';
 import AuthContext from "../context/context";
 import { Link } from 'react-router-dom';
 import { Avatar, Button, Col, Layout, Row } from 'antd';
